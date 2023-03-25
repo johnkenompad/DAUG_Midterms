@@ -9,7 +9,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
 
     private TextView resultTextView;
     private Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9;
-    private Button buttonAdd, buttonSubtract, buttonMultiply, buttonDivide, buttonDecimal, buttonEquals, buttonClear;
+    private Button buttonAdd, buttonSubtract, buttonMultiply, buttonDivide, buttonDecimal, buttonEquals, buttonClear, buttonDelete;
 
     private String currentNumber = "";
     private String currentOperator = "";
@@ -24,7 +24,6 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         getSupportActionBar().hide();
 
         resultTextView = findViewById(R.id.resultTextView);
-
         button0 = findViewById(R.id.button0);
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
@@ -42,6 +41,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         buttonDecimal = findViewById(R.id.buttonDecimal);
         buttonEquals = findViewById(R.id.buttonEquals);
         buttonClear = findViewById(R.id.buttonClear);
+        buttonDelete = findViewById(R.id.buttonDelete);
 
 
         button0.setOnClickListener(this);
@@ -61,6 +61,7 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
         buttonDecimal.setOnClickListener(this);
         buttonEquals.setOnClickListener(this);
         buttonClear.setOnClickListener(this);
+        buttonDelete.setOnClickListener(this);
 
     }
     @Override
@@ -193,6 +194,13 @@ public class CalculatorActivity extends AppCompatActivity implements View.OnClic
                 secondNumber = 0;
                 result = 0;
                 resultTextView.setText("");
+                break;
+
+            case R.id.buttonDelete:
+                if (currentNumber.length() > 0) {
+                    currentNumber = currentNumber.substring(0, currentNumber.length() - 1);
+                    resultTextView.setText(currentNumber);
+                }
                 break;
 
         }
